@@ -1,0 +1,143 @@
+
+.skin-black .main-header .logo {
+  background-color: #141414;
+    color: white;
+}
+
+.skin-black .main-header .logo:hover {
+  background-color: #141414;
+    color: white;
+}
+
+.skin-black .main-header .navbar {
+  background-color: #141414;
+}
+
+.content-wrapper, .right-side {
+  background-color: #3a3a3c;
+}
+
+label {
+  color: white;
+}
+
+input[type=text]{
+  border-radius: 20px;
+  border: 1px solid #2d9fd9;
+  color: black;
+  width: 250px;
+  height: 30px;
+  padding-left: 10px;
+}
+
+.word-button {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  text-align: center;
+}
+
+.words-left-white {
+  color: #f6f6f6;
+}
+
+.inline-element {
+  display: inline-block;
+  text-align: left;
+}
+
+
+.lockButton {
+  background-color: #2d9fd9;
+    border: white;
+  color: white;
+  border-radius: 10px;
+  height: 30px;
+  
+}
+
+.tileButton {
+  background-color: #708090;
+    border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  padding: 32px 32px;
+}
+
+.tileButton:hover {
+  background-color: #708090;
+    border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 4px;
+  padding: 32px 32px;
+}
+
+.tileButton.rightSpot {
+  background-color: #228B22;
+    color: black;
+  
+}
+
+.tileButton.wrongSpot {
+  background-color: #FFDB58;
+    color: black;
+  
+}
+
+.tileButton.wrongLetter {
+  background-color:  #708090;
+    
+}
+
+.dataTable {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.dataTables_filter input{
+  color: #0e1111;
+    font-weight: normal;
+}
+
+.dataTable thead tr {
+  background-color: #2d9fd9;
+    color: #ffffff;
+    text-align: left;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 12px 15px;
+}
+
+.dataTable tbody tr {
+  border-bottom: thin solid #dddddd;
+}
+
+.dataTable tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.dataTable tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.dataTable tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
