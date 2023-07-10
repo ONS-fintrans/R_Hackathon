@@ -13,7 +13,7 @@ word_list <- words::words %>%
   filter(word_length == 5) %>% 
   select(word)
 
-header <- dashboardHeader(title = "Wordle Solver")
+header <- dashboardHeader(title = "Wordle")
 
 sidebar <- dashboardSidebar(disable = T)
 
@@ -65,6 +65,8 @@ server <- function(input,output,session){
   target_val <- strsplit(target, "")[[1]]
   
   observeEvent(input$go1, {
+<<<<<<< HEAD
+=======
     
     if(nchar(input$word1_guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
@@ -76,13 +78,15 @@ server <- function(input,output,session){
     
     guess_val <- strsplit(input$word1_guess, "")[[1]]
     print(guess_val)
+>>>>>>> 6f2a29108ef103b17bf8de4c20fb741a540cb951
     
-    word <- word_checker(session, target_val, guess_val)
-    print(word)
-    
-    if (counter$countervalue==0){
-      check_update_col(session, input, word, 1)
+    if(nchar(input$word1_guess)!=5){
+      showNotification("Error: Word must be exactly 5 letters")
+    } else if(!(input$word1_guess %in% word_list$word)){
+      showNotification("Error: Not a real word")
+    } else {
       
+<<<<<<< HEAD
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
       
@@ -124,6 +128,55 @@ server <- function(input,output,session){
       
       guess_achieved(input$word1_guess,target)
     }
+=======
+      guess_val <- strsplit(input$word1_guess, "")[[1]]
+      print(guess_val)
+      
+      word <- word_checker(session, target_val, guess_val)
+      print(word)
+      
+      if (counter$countervalue==0){
+        check_update_col(session, input, word, 1)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }
+      
+      else if (counter$countervalue==1){
+        check_update_col(session, input, word, 2)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }
+      
+      else if (counter$countervalue==2){
+        check_update_col(session, input, word, 3)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }
+      
+      else if (counter$countervalue==3){
+        check_update_col(session, input, word, 4)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }
+      
+      else if (counter$countervalue==4){
+        check_update_col(session, input, word, 5)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }
+      
+      else if (counter$countervalue==5){
+        check_update_col(session, input, word, 6)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+      }}
+>>>>>>> 2cc0a19cf3c1c9c2491d739ab86fe2820b59ef99
     
     else if (counter$countervalue==5){
       check_update_col(session, input, word, 6)
