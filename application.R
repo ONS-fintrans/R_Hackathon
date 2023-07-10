@@ -62,8 +62,9 @@ server <- function(input,output,session){
     
     if(nchar(input$word1_guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
+    } else if(!(input$word1_guess %in% word_list$word)){
+      showNotification("Error: Not a real word")
     } else {
-    
     
     guess_val <- strsplit(input$word1_guess, "")[[1]]
     print(guess_val)
