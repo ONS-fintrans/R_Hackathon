@@ -135,3 +135,19 @@ word_checker <- function(session, target_val, guess_val) {
   output <- data.frame(output)
   return(output)
 }
+
+
+guess_achieved <- function(input,target){
+  if(input==target){
+    showModal(
+      modalDialog(
+        title = "Congratulations",
+        "You have guess correctly!",
+        easyClose = FALSE,
+        footer = NULL
+      )
+    )
+    shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 5000)")
+  }
+  
+}

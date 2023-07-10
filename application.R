@@ -39,7 +39,7 @@ body <- dashboardBody(
   br(),
   letter_colour_ui("word5",5),
   br(),
-  letter_colour_ui("word5",5)
+  letter_colour_ui("word6",6)
 )
 
 ui <- dashboardPage(
@@ -52,6 +52,12 @@ ui <- dashboardPage(
 )
 
 server <- function(input,output,session){
+
+  observeEvent(input$closeApp,{
+    if(input$closeApp){
+      stopApp()
+    }
+  })
   
   counter <- reactiveValues(countervalue = 0)
   
@@ -62,8 +68,10 @@ server <- function(input,output,session){
     
     if(nchar(input$word1_guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
+      updateTextInput(session,"word1_guess",value="")
     } else if(!(input$word1_guess %in% word_list$word)){
       showNotification("Error: Not a real word")
+      updateTextInput(session,"word1_guess",value="")
     } else {
     
     guess_val <- strsplit(input$word1_guess, "")[[1]]
@@ -77,6 +85,8 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }
     
     else if (counter$countervalue==1){
@@ -84,6 +94,8 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }
     
     else if (counter$countervalue==2){
@@ -91,6 +103,8 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }
     
     else if (counter$countervalue==3){
@@ -98,6 +112,8 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }
     
     else if (counter$countervalue==4){
@@ -105,6 +121,8 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }
     
     else if (counter$countervalue==5){
@@ -112,13 +130,16 @@ server <- function(input,output,session){
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
+      
+      guess_achieved(input$word1_guess,target)
     }}
     
     print(target_val)
     print(counter$countervalue)
+    updateTextInput(session,"word1_guess",value="")
   })
   
-  
+
 }
 
 
