@@ -81,15 +81,6 @@ letter_colour_ui<- function(ui,word_id) {
 
 
 
-
-guess_in_list <-  function(session,target, guess) {
-  if(!(guess %in% word_list$word)){
-    stop("Error - not a real word")
-  }
-}
-
-
-
 ##Continue game functions----
 word_checker <- function(session, target_val, guess_val) {
   output <- character(5)

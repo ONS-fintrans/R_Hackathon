@@ -37,6 +37,8 @@ body <- dashboardBody(
   br(),
   letter_colour_ui("word4",4),
   br(),
+  letter_colour_ui("word5",5),
+  br(),
   letter_colour_ui("word5",5)
 )
 
@@ -57,6 +59,12 @@ server <- function(input,output,session){
   target_val <- strsplit(target, "")[[1]]
   
   observeEvent(input$go1, {
+    if(nchar(input$word1_guess)!=5){
+      showNotification("Error: Word must be exactly 5 letters")
+    } else if(!(input$word1_guess %in% word_list$word)){
+      showNotification("Error: Not a real word")
+    } else {
+      
     guess_val <- strsplit(input$word1_guess, "")[[1]]
     print(guess_val)
     
@@ -97,19 +105,18 @@ server <- function(input,output,session){
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
     }
+    else if (counter$countervalue==5){
+      check_update_col(session, input, word, 6)
+      
+      counter$countervalue <- counter$countervalue+1
+      print(counter$countervalue)
+    }}
     
     print(target_val)
     print(counter$countervalue)
   })
   
-  observeEvent(input$word1_guess,{
-    if(nchar(input$word1_guess) != 5) {
-      disable(id = "go1")
-    }
-    else {
-      enable(id = "go1")
-    }
-  })
+  
 }
 
 
