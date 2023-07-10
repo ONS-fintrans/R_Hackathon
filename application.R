@@ -59,18 +59,6 @@ server <- function(input,output,session){
   target_val <- strsplit(target, "")[[1]]
   
   observeEvent(input$go1, {
-<<<<<<< HEAD
-=======
-    
-    if(nchar(input$word1_guess)!=5){
-      showNotification("Error: Word must be exactly 5 letters")
-    } else if(!(input$word1_guess %in% word_list$word)){
-      showNotification("Error: Not a real word")
-    } else {
-    
-    guess_val <- strsplit(input$word1_guess, "")[[1]]
-    print(guess_val)
->>>>>>> 6f2a29108ef103b17bf8de4c20fb741a540cb951
     
     if(nchar(input$word1_guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
@@ -125,13 +113,6 @@ server <- function(input,output,session){
         counter$countervalue <- counter$countervalue+1
         print(counter$countervalue)
       }}
-    
-    else if (counter$countervalue==5){
-      check_update_col(session, input, word, 6)
-      
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
-    }}
     
     print(target_val)
     print(counter$countervalue)
