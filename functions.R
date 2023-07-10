@@ -149,5 +149,17 @@ guess_achieved <- function(input,target){
     )
     shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 5000)")
   }
-  
+}
+
+
+max_guesses <- function(){
+  showModal(
+    modalDialog(
+      title = "You Lose!!!",
+      "Maximun Amount of Guess' Reached",
+      easyClose = FALSE,
+      footer = NULL
+    )
+  )
+  shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 5000)")
 }
