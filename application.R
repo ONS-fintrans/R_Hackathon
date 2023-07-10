@@ -13,7 +13,7 @@ word_list <- words::words %>%
   filter(word_length == 5) %>% 
   select(word)
 
-header <- dashboardHeader(title = "Wordle")
+header <- dashboardHeader(title = "Wordle Solver")
 
 sidebar <- dashboardSidebar(disable = T)
 
@@ -66,6 +66,7 @@ server <- function(input,output,session){
   
   observeEvent(input$go1, {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     
     if(nchar(input$word1_guess)!=5){
@@ -79,6 +80,8 @@ server <- function(input,output,session){
     guess_val <- strsplit(input$word1_guess, "")[[1]]
     print(guess_val)
 >>>>>>> 6f2a29108ef103b17bf8de4c20fb741a540cb951
+=======
+>>>>>>> 196c6c42fbb6808a6cf35baf850d4a3e4a988a93
     
     if(nchar(input$word1_guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
@@ -178,6 +181,7 @@ server <- function(input,output,session){
       }}
 >>>>>>> 2cc0a19cf3c1c9c2491d739ab86fe2820b59ef99
     
+<<<<<<< HEAD
     else if (counter$countervalue==5){
       check_update_col(session, input, word, 6)
       
@@ -187,6 +191,8 @@ server <- function(input,output,session){
       guess_achieved(input$word1_guess,target)
     }}
     
+=======
+>>>>>>> 196c6c42fbb6808a6cf35baf850d4a3e4a988a93
     print(target_val)
     print(counter$countervalue)
     updateTextInput(session,"word1_guess",value="")
