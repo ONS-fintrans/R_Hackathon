@@ -60,84 +60,39 @@ server <- function(input,output,session){
     guess_val <- strsplit(input$word1_guess, "")[[1]]
     print(guess_val)
     
-    test <- word_checker(session, target_val, guess_val)
-    print(test)
+    word <- word_checker(session, target_val, guess_val)
+    print(word)
     
     if (counter$countervalue==0){
-      change_letter_col(session, test[1,1], "l1_w1")
-      change_letter_col(session, test[2,1], "l2_w1")
-      change_letter_col(session, test[3,1], "l3_w1")
-      change_letter_col(session, test[4,1], "l4_w1")
-      change_letter_col(session, test[5,1], "l5_w1")
-      updateButton(session, "l1_w1", label = toupper(str_sub(input$word1_guess, 1, 1)))
-      updateButton(session, "l2_w1", label = toupper(str_sub(input$word1_guess, 2, 2)))
-      updateButton(session, "l3_w1", label = toupper(str_sub(input$word1_guess, 3, 3)))
-      updateButton(session, "l4_w1", label = toupper(str_sub(input$word1_guess, 4, 4)))
-      updateButton(session, "l5_w1", label = toupper(str_sub(input$word1_guess, 5, 5)))
+      check_update_col(session, input, word, 1)
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
     }
     
     else if (counter$countervalue==1){
-      change_letter_col(session, test[1,1], "l1_w2")
-      change_letter_col(session, test[2,1], "l2_w2")
-      change_letter_col(session, test[3,1], "l3_w2")
-      change_letter_col(session, test[4,1], "l4_w2")
-      change_letter_col(session, test[5,1], "l5_w2")
-      updateButton(session, "l1_w2", label = toupper(str_sub(input$word1_guess, 1, 1)))
-      updateButton(session, "l2_w2", label = toupper(str_sub(input$word1_guess, 2, 2)))
-      updateButton(session, "l3_w2", label = toupper(str_sub(input$word1_guess, 3, 3)))
-      updateButton(session, "l4_w2", label = toupper(str_sub(input$word1_guess, 4, 4)))
-      updateButton(session, "l5_w2", label = toupper(str_sub(input$word1_guess, 5, 5)))
+      check_update_col(session, input, word, 2)
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
     }
     
     else if (counter$countervalue==2){
-      change_letter_col(session, test[1,1], "l1_w3")
-      change_letter_col(session, test[2,1], "l2_w3")
-      change_letter_col(session, test[3,1], "l3_w3")
-      change_letter_col(session, test[4,1], "l4_w3")
-      change_letter_col(session, test[5,1], "l5_w3")
-      updateButton(session, "l1_w3", label = toupper(str_sub(input$word1_guess, 1, 1)))
-      updateButton(session, "l2_w3", label = toupper(str_sub(input$word1_guess, 2, 2)))
-      updateButton(session, "l3_w3", label = toupper(str_sub(input$word1_guess, 3, 3)))
-      updateButton(session, "l4_w3", label = toupper(str_sub(input$word1_guess, 4, 4)))
-      updateButton(session, "l5_w3", label = toupper(str_sub(input$word1_guess, 5, 5)))
+      check_update_col(session, input, word, 3)
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
     }
     
     else if (counter$countervalue==3){
-      change_letter_col(session, test[1,1], "l1_w4")
-      change_letter_col(session, test[2,1], "l2_w4")
-      change_letter_col(session, test[3,1], "l3_w4")
-      change_letter_col(session, test[4,1], "l4_w4")
-      change_letter_col(session, test[5,1], "l5_w4")
-      updateButton(session, "l1_w4", label = toupper(str_sub(input$word1_guess, 1, 1)))
-      updateButton(session, "l2_w4", label = toupper(str_sub(input$word1_guess, 2, 2)))
-      updateButton(session, "l3_w4", label = toupper(str_sub(input$word1_guess, 3, 3)))
-      updateButton(session, "l4_w4", label = toupper(str_sub(input$word1_guess, 4, 4)))
-      updateButton(session, "l5_w4", label = toupper(str_sub(input$word1_guess, 5, 5)))
+      check_update_col(session, input, word, 4)
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)
     }
     
     else if (counter$countervalue==4){
-      change_letter_col(session, test[1,1], "l1_w5")
-      change_letter_col(session, test[2,1], "l2_w5")
-      change_letter_col(session, test[3,1], "l3_w5")
-      change_letter_col(session, test[4,1], "l4_w5")
-      change_letter_col(session, test[5,1], "l5_w5")
-      updateButton(session, "l1_w5", label = toupper(str_sub(input$word1_guess, 1, 1)))
-      updateButton(session, "l2_w5", label = toupper(str_sub(input$word1_guess, 2, 2)))
-      updateButton(session, "l3_w5", label = toupper(str_sub(input$word1_guess, 3, 3)))
-      updateButton(session, "l4_w5", label = toupper(str_sub(input$word1_guess, 4, 4)))
-      updateButton(session, "l5_w5", label = toupper(str_sub(input$word1_guess, 5, 5)))
+      check_update_col(session, input, word, 5)
       
       counter$countervalue <- counter$countervalue+1
       print(counter$countervalue)

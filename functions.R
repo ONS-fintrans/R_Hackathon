@@ -1,3 +1,40 @@
+check_update_col <- function(session, input, word, word_id){
+  change_letter_col(session, word[1,1], paste0("l1_w",word_id))
+  change_letter_col(session, word[2,1], paste0("l2_w",word_id))
+  change_letter_col(session, word[3,1], paste0("l3_w",word_id))
+  change_letter_col(session, word[4,1], paste0("l4_w",word_id))
+  change_letter_col(session, word[5,1], paste0("l5_w",word_id))
+  updateButton(session, paste0("l1_w",word_id), label = toupper(str_sub(input$word1_guess, 1, 1)))
+  updateButton(session, paste0("l2_w",word_id), label = toupper(str_sub(input$word1_guess, 2, 2)))
+  updateButton(session, paste0("l3_w",word_id), label = toupper(str_sub(input$word1_guess, 3, 3)))
+  updateButton(session, paste0("l4_w",word_id), label = toupper(str_sub(input$word1_guess, 4, 4)))
+  updateButton(session, paste0("l5_w",word_id), label = toupper(str_sub(input$word1_guess, 5, 5)))
+}
+
+
+change_letter_col <- function(session,value,id){
+  if(value>2){
+    value <- value %% 3
+  }
+  
+  if(value == 1){
+    removeClass(class = "wrongLetter", selector = paste0("#",id))
+    removeClass(class = "rightSpot", selector = paste0("#",id))
+    addClass(class = "wrongSpot",selector = paste0("#",id))
+  }
+  else if(value == 2){
+    removeClass(class = "wrongSpot", selector = paste0("#",id))
+    removeClass(class = "wrongLetter", selector = paste0("#",id))
+    addClass(class = "rightSpot",selector = paste0("#",id))
+  }
+  else {
+    removeClass(class = "rightSpot", selector = paste0("#",id))
+    removeClass(class = "wrongSpot", selector = paste0("#",id))
+    addClass(class = "wrongLetter",selector = paste0("#",id))
+  }
+}
+
+
 changelettercolour<-function(session,input,id){
   
   observeEvent(input[[id]],{
@@ -25,29 +62,6 @@ changelettercolour<-function(session,input,id){
     
   })
 }
-
-change_letter_col <- function(session,value,id){
-  if(value>2){
-    value <- value %% 3
-  }
-  
-  if(value == 1){
-    removeClass(class = "wrongLetter", selector = paste0("#",id))
-    removeClass(class = "rightSpot", selector = paste0("#",id))
-    addClass(class = "wrongSpot",selector = paste0("#",id))
-  }
-  else if(value == 2){
-    removeClass(class = "wrongSpot", selector = paste0("#",id))
-    removeClass(class = "wrongLetter", selector = paste0("#",id))
-    addClass(class = "rightSpot",selector = paste0("#",id))
-  }
-  else {
-    removeClass(class = "rightSpot", selector = paste0("#",id))
-    removeClass(class = "wrongSpot", selector = paste0("#",id))
-    addClass(class = "wrongLetter",selector = paste0("#",id))
-  }
-}
-
 
 
 letter_colour_ui<- function(ui,word_id) {
