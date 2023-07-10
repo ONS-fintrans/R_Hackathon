@@ -13,7 +13,7 @@ word_list <- words::words %>%
   filter(word_length == 5) %>% 
   select(word)
 
-header <- dashboardHeader(title = "Wordle Solver")
+header <- dashboardHeader(title = "Wordle")
 
 sidebar <- dashboardSidebar(disable = T)
 
