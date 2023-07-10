@@ -1,23 +1,23 @@
 .skin-black .main-header .logo {
-  background-color: #141414;
+  background-color: #6ca965;
     color: white;
 }
 
 .skin-black .main-header .logo:hover {
-  background-color: #141414;
+  background-color: #6ca965;
     color: white;
 }
 
 .skin-black .main-header .navbar {
-  background-color: #141414;
+  background-color: #6ca965;
 }
 
 .content-wrapper, .right-side {
-  background-color: #3a3a3c;
+  background-color: #fff;
 }
 
 label {
-  color: white;
+  color: black;
 }
 
 input[type=text]{
@@ -47,7 +47,7 @@ input[type=text]{
 
 
 .lockButton {
-  background-color: #2d9fd9;
+  background-color: #6ca965;
     border: white;
   color: white;
   border-radius: 10px;
@@ -55,21 +55,12 @@ input[type=text]{
   
 }
 
-.tileButton {
-  background-color: #708090;
-    border: none;
-  color: white;
-  text-align: center;
-  width: 80px;
-  height: 80px;
-  font-family: "Franklin Gothic";
-  font-size: 36px;
-}
 
-.tileButton:hover {
+.tileButton {
+  cursor: not-allowed;
+  pointer-events: none;
   background-color: #708090;
     border: none;
-  color: white;
   text-align: center;
   width: 80px;
   height: 80px;
@@ -79,7 +70,6 @@ input[type=text]{
 
 .tileButton.rightSpot {
   background-color: #6ca965;
-    color: black;
   text-align: center;
   width: 80px;
   height: 80px;
@@ -89,7 +79,6 @@ input[type=text]{
 
 .tileButton.wrongSpot {
   background-color: #c8b653;
-    color: black;
   text-align: center;
   width: 80px;
   height: 80px;
