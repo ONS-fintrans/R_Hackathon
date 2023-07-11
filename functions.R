@@ -147,7 +147,7 @@ guess_achieved <- function(input,target){
         footer = NULL
       )
     )
-    shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 5000)")
+    shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 4000)")
   }
 }
 
@@ -161,5 +161,5 @@ max_guesses <- function(){
       footer = NULL
     )
   )
-  shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 5000)")
+  shinyjs::runjs("setTimeout(function() {Shiny.onInputChange('closeApp', true)}, 4000)")
 }

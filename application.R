@@ -80,10 +80,12 @@ server <- function(input,output,session){
   
   observeEvent(input$go1, {
     
-    if(nchar(input$word1_guess)!=5){
+     guess <- tolower(input$word1_guess)
+     
+    if(nchar(guess)!=5){
       showNotification("Error: Word must be exactly 5 letters")
       updateTextInput(session,"word1_guess",value="")
-    } else if(!(input$word1_guess %in% word_list$word)){
+    } else if(!(guess %in% word_list$word)){
       showNotification("Error: Not a real word")
       updateTextInput(session,"word1_guess",value="")
     } else {
