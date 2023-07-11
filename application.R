@@ -18,6 +18,8 @@ header <- dashboardHeader(title = "Wordle Solver")
 sidebar <- dashboardSidebar(disable = T)
 
 body <- dashboardBody(
+  actionButton(inputId = "help", label = "", icon = icon("circle-question"), class = "helpButton",
+               style = "position: absolute; right: 40px"),
   useShinyjs(),
   div(
     class = "word-button",
@@ -27,7 +29,7 @@ body <- dashboardBody(
       value = ""
     ) %>%
       tagAppendAttributes(class = "inline-element"),
-    bsButton(inputId = "go1", "Lock Guess", class = "lockButton")
+    actionButton(inputId = "go1", "Lock Guess", class = "lockButton")
   ),
   letter_colour_ui("word1",1),
   br(),
@@ -52,15 +54,26 @@ ui <- dashboardPage(
 )
 
 server <- function(input,output,session){
-
+  
   observeEvent(input$closeApp,{
     if(input$closeApp){
       stopApp()
     }
   })
   
+  observeEvent(input$help, {
+    showModal(modalDialog(
+      HTML('<img src="instructions.png" />'),
+      easyClose = TRUE,
+      footer=tagList(
+        modalButton('Back')
+      )
+    ))
+  })
+  
+  
   counter <- reactiveValues(countervalue = 0)
-
+  
   target <- sample(word_list$word,1)
   target_val <- strsplit(target, "")[[1]]
   
@@ -74,67 +87,67 @@ server <- function(input,output,session){
       showNotification("Error: Not a real word")
       updateTextInput(session,"word1_guess",value="")
     } else {
-    
-    guess_val <- strsplit(input$word1_guess, "")[[1]]
-    print(guess_val)
-    
-    word <- word_checker(session, target_val, guess_val)
-    print(word)
-    
-    if (counter$countervalue==0){
-      check_update_col(session, input, word, 1)
       
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
+      guess_val <- strsplit(input$word1_guess, "")[[1]]
+      print(guess_val)
       
-      guess_achieved(input$word1_guess,target)
-    }
-    
-    else if (counter$countervalue==1){
-      check_update_col(session, input, word, 2)
+      word <- word_checker(session, target_val, guess_val)
+      print(word)
       
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
+      if (counter$countervalue==0){
+        check_update_col(session, input, word, 1)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+      }
       
-      guess_achieved(input$word1_guess,target)
-    }
-    
-    else if (counter$countervalue==2){
-      check_update_col(session, input, word, 3)
+      else if (counter$countervalue==1){
+        check_update_col(session, input, word, 2)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+      }
       
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
+      else if (counter$countervalue==2){
+        check_update_col(session, input, word, 3)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+      }
       
-      guess_achieved(input$word1_guess,target)
-    }
-    
-    else if (counter$countervalue==3){
-      check_update_col(session, input, word, 4)
+      else if (counter$countervalue==3){
+        check_update_col(session, input, word, 4)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+      }
       
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
+      else if (counter$countervalue==4){
+        check_update_col(session, input, word, 5)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+      }
       
-      guess_achieved(input$word1_guess,target)
-    }
-    
-    else if (counter$countervalue==4){
-      check_update_col(session, input, word, 5)
-      
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
-      
-      guess_achieved(input$word1_guess,target)
-    }
-    
-    else if (counter$countervalue==5){
-      check_update_col(session, input, word, 6)
-      
-      counter$countervalue <- counter$countervalue+1
-      print(counter$countervalue)
-      
-      guess_achieved(input$word1_guess,target)
-      
-    }}
+      else if (counter$countervalue==5){
+        check_update_col(session, input, word, 6)
+        
+        counter$countervalue <- counter$countervalue+1
+        print(counter$countervalue)
+        
+        guess_achieved(input$word1_guess,target)
+        
+      }}
     
     if(counter$countervalue==6){
       max_guesses()
@@ -144,10 +157,10 @@ server <- function(input,output,session){
     print(counter$countervalue)
     updateTextInput(session,"word1_guess",value="")
     
-
+    
   })
   
-
+  
 }
 
 
