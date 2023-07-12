@@ -73,6 +73,7 @@ server <- function(input,output,session){
   
   
   counter <- reactiveValues(countervalue = 0)
+  previous_guesses <- reactiveValues()
   
   target <- sample(word_list$word,1)
   target_val <- strsplit(target, "")[[1]]
@@ -89,61 +90,68 @@ server <- function(input,output,session){
       showNotification("Error: Not a real word")
       updateTextInput(session,"word1_guess",value="")
     } else {
+        if(guess %in% previous_guesses$guess){
+          showNotification("Error: You cannot use the same word multiple times")
+          updateTextInput(session,"word1_guess",value="")
+        }
+        else{
+          #previous_guesses <- append(previous_guesses, guess)
+          previous_guesses$guess <- c(isolate(previous_guesses$guess), isolate(guess))
+          
+          guess_val <- strsplit(input$word1_guess, "")[[1]]
+          print(guess_val)
       
-      guess_val <- strsplit(input$word1_guess, "")[[1]]
-      print(guess_val)
+          word <- word_checker(session, target_val, guess_val)
+          print(word)
       
-      word <- word_checker(session, target_val, guess_val)
-      print(word)
+          if (counter$countervalue==0){
+            check_update_col(session, input, word, 1)
+        
+            counter$countervalue <- counter$countervalue+1
+        
+            guess_achieved(input$word1_guess,target)
+         }
       
-      if (counter$countervalue==0){
-        check_update_col(session, input, word, 1)
+         else if (counter$countervalue==1){
+            check_update_col(session, input, word, 2)
         
-        counter$countervalue <- counter$countervalue+1
+            counter$countervalue <- counter$countervalue+1
         
-        guess_achieved(input$word1_guess,target)
-      }
+            guess_achieved(input$word1_guess,target)
+         }
       
-      else if (counter$countervalue==1){
-        check_update_col(session, input, word, 2)
+         else if (counter$countervalue==2){
+           check_update_col(session, input, word, 3)
         
-        counter$countervalue <- counter$countervalue+1
+           counter$countervalue <- counter$countervalue+1
         
-        guess_achieved(input$word1_guess,target)
-      }
+            guess_achieved(input$word1_guess,target)
+          }
       
-      else if (counter$countervalue==2){
-        check_update_col(session, input, word, 3)
+          else if (counter$countervalue==3){
+           check_update_col(session, input, word, 4)
         
-        counter$countervalue <- counter$countervalue+1
+           counter$countervalue <- counter$countervalue+1
         
-        guess_achieved(input$word1_guess,target)
-      }
+           guess_achieved(input$word1_guess,target)
+          }
       
-      else if (counter$countervalue==3){
-        check_update_col(session, input, word, 4)
+          else if (counter$countervalue==4){
+           check_update_col(session, input, word, 5)
         
-        counter$countervalue <- counter$countervalue+1
+           counter$countervalue <- counter$countervalue+1
         
-        guess_achieved(input$word1_guess,target)
-      }
+            guess_achieved(input$word1_guess,target)
+         }
       
-      else if (counter$countervalue==4){
-        check_update_col(session, input, word, 5)
+          else if (counter$countervalue==5){
+            check_update_col(session, input, word, 6)
         
-        counter$countervalue <- counter$countervalue+1
-        
-        guess_achieved(input$word1_guess,target)
-      }
-      
-      else if (counter$countervalue==5){
-        check_update_col(session, input, word, 6)
-        
-        counter$countervalue <- counter$countervalue+1
+            counter$countervalue <- counter$countervalue+1
 
-        guess_achieved(input$word1_guess,target)
+           guess_achieved(input$word1_guess,target)
         
-      }}
+         }}}
     
     if(counter$countervalue==6){
       max_guesses()
