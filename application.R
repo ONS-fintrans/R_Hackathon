@@ -64,10 +64,10 @@ server <- function(input,output,session){
   
   observeEvent(input$help, {
     showModal(modalDialog(
-      HTML('<img src="instructions.png" />'),
+      HTML('<img src="instructions.png" onmousedown="if (event.preventDefault) event.preventDefault()" />'),
       easyClose = FALSE,
       footer=tagList(
-        modalButton('Back')
+        modalButton(div('Back', style="font-size:120%"))
       )
     ))
   })
