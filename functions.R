@@ -35,35 +35,6 @@ change_letter_col <- function(session,value,id){
 }
 
 
-changelettercolour<-function(session,input,id){
-  
-  observeEvent(input[[id]],{
-    
-    value <- input [[id]]
-    
-    if(value>2){
-      value <- value %% 3
-    }
-    
-    if(value == 1){
-      removeClass(class = "wrongLetter", selector = paste0("#",id))
-      removeClass(class = "wrongSpot", selector = paste0("#",id))
-      addClass(class = "wrongSpot",selector = paste0("#",id))
-    }
-    else if(value == 2){
-      removeClass(class = "wrongSpot", selector = paste0("#",id))
-      removeClass(class = "wrongLetter", selector = paste0("#",id))
-      addClass(class = "rightSpot",selector = paste0("#",id))
-    }else {
-      removeClass(class = "rightSpot", selector = paste0("#",id))
-      removeClass(class = "wrongSpot", selector = paste0("#",id))
-      addClass(class = "wrongLetter",selector = paste0("#",id))
-    }
-    
-  })
-}
-
-
 letter_colour_ui<- function(ui,word_id) {
   fluidRow(
     column(

@@ -13,7 +13,7 @@ word_list <- words::words %>%
   filter(word_length == 5) %>% 
   select(word)
 
-header <- dashboardHeader(title = "Wordle Solver")
+header <- dashboardHeader(title = "Wordle Shiny")
 
 sidebar <- dashboardSidebar(disable = T)
 
@@ -100,7 +100,6 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 1)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
         
         guess_achieved(input$word1_guess,target)
       }
@@ -109,7 +108,6 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 2)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
         
         guess_achieved(input$word1_guess,target)
       }
@@ -118,7 +116,6 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 3)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
         
         guess_achieved(input$word1_guess,target)
       }
@@ -127,7 +124,6 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 4)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
         
         guess_achieved(input$word1_guess,target)
       }
@@ -136,7 +132,6 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 5)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
         
         guess_achieved(input$word1_guess,target)
       }
@@ -145,8 +140,7 @@ server <- function(input,output,session){
         check_update_col(session, input, word, 6)
         
         counter$countervalue <- counter$countervalue+1
-        print(counter$countervalue)
-        
+
         guess_achieved(input$word1_guess,target)
         
       }}
@@ -155,8 +149,6 @@ server <- function(input,output,session){
       max_guesses()
     }
     
-    print(target_val)
-    print(counter$countervalue)
     updateTextInput(session,"word1_guess",value="")
     
     
