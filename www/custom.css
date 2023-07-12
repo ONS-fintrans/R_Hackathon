@@ -31,7 +31,7 @@ input[type=text]{
 
 .word-button {
   margin: auto;
-  width: 60%;
+  width: 80%;
   padding: 10px;
   text-align: center;
 }
@@ -70,19 +70,25 @@ input[type=text]{
 
 .lockButton {
   background-color: #6ca965;
-    border: white;
+  border: white;
   color: white;
-  border-radius: 10px;
-  height: 30px;
+  text-align: center;
+  font-size: 120%;
+  margin: auto; 
+  text-align: center; 
+  font-size:120%;
   
 }
 
 .lockButton:focus {
   background-color: #6ca965;
-    border: white;
+  border: white;
   color: white;
-  border-radius: 10px;
-  height: 30px;
+  text-align: center;
+  font-size: 120%;
+  margin: auto; 
+  text-align: center; 
+  font-size:120%;
   
 }
 

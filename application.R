@@ -20,13 +20,14 @@ sidebar <- dashboardSidebar(disable = T)
 body <- dashboardBody(
   actionButton(inputId = "help", label = "", icon = icon("circle-question"), class = "helpButton",
                style = "position: absolute; right: 40px"),
+  
   useShinyjs(),
   div(
     class = "word-button",
     textInput(
       inputId = "word1_guess",
-      label = "Enter your guess:",
-      value = ""
+      label = div("Enter your guess:", style="font-size:120%"),
+      value = "",
     ) %>%
       tagAppendAttributes(class = "inline-element"),
     actionButton(inputId = "go1", "Lock Guess", class = "lockButton")
