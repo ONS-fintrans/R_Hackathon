@@ -225,8 +225,8 @@ guess_achieved <- function(input,target){
   if(input==target){
     showModal(
       modalDialog(
-        title = "Congratulations",
-        "You have guessed correctly!",
+        title = "Congratulations!!!",
+        "You have guessed correctly! You will now be exited from the application.",
         easyClose = FALSE,
         footer = NULL
       )
@@ -265,7 +265,7 @@ max_guesses <- function(){
   showModal(
     modalDialog(
       title = "You Lose!!!",
-      "Maximun amount of guesses reached",
+      "Maximum amount of guesses reached. You will now be exited from the application.",
       easyClose = FALSE,
       footer = NULL
     )
