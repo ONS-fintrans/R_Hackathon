@@ -64,7 +64,7 @@ server <- function(input,output,session){
   observeEvent(input$help, {
     showModal(modalDialog(
       HTML('<img src="instructions.png" />'),
-      easyClose = TRUE,
+      easyClose = FALSE,
       footer=tagList(
         modalButton('Back')
       )
@@ -84,18 +84,44 @@ server <- function(input,output,session){
      guess <- tolower(input$word1_guess)
      
     if(nchar(guess)!=5){
-      showNotification("Error: Word must be exactly 5 letters")
+      showModal(
+        modalDialog(
+          title = div("Error", style="font-size:160%"),
+          div("Guesses must be exactly 5 letters long.", style="font-size:120%"),
+          easyClose = FALSE,
+          footer=tagList(
+            modalButton(div('Back', style="font-size:120%"))
+          )
+        )
+      )
       updateTextInput(session,"word1_guess",value="")
     } else if(!(guess %in% word_list$word)){
-      showNotification("Error: Not a real word")
+      showModal(
+        modalDialog(
+          title = div("Error", style="font-size:160%"),
+          div("Guesses must be a real word.", style="font-size:120%"),
+          easyClose = FALSE,
+          footer=tagList(
+            modalButton(div('Back', style="font-size:120%"))
+          )
+        )
+      )
       updateTextInput(session,"word1_guess",value="")
     } else {
         if(guess %in% previous_guesses$guess){
-          showNotification("Error: You cannot use the same word multiple times")
+          showModal(
+            modalDialog(
+              title = div("Error", style="font-size:160%"),
+              div("Make sure that guesses are not used multiple times.", style="font-size:120%"),
+              easyClose = FALSE,
+              footer=tagList(
+                modalButton(div('Back', style="font-size:120%"))
+              )
+            )
+          )
           updateTextInput(session,"word1_guess",value="")
         }
         else{
-          #previous_guesses <- append(previous_guesses, guess)
           previous_guesses$guess <- c(isolate(previous_guesses$guess), isolate(guess))
           
           guess_val <- strsplit(input$word1_guess, "")[[1]]
