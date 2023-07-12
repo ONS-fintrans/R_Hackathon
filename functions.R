@@ -1,3 +1,23 @@
+#'@title check_update_col
+#'
+#'@description Updates buttons with user inputted word letters & assigns colour if correct
+#'
+#'@details Depending on how many times the user has submitted a guess, this function will update a new row of buttons depending on correctness of input
+#'
+#'@param session Shiny session
+#'
+#'@param input user input word
+#'
+#'@param word user word broken down into letters
+#'
+#'@param word_id Attempt number
+#'
+#'@return update of buttons
+#'
+#'@examples check_update_col(session, input, word, 3)
+#'
+#'@export
+
 check_update_col <- function(session, input, word, word_id){
   change_letter_col(session, word[1,1], paste0("l1_w",word_id))
   change_letter_col(session, word[2,1], paste0("l2_w",word_id))
@@ -11,6 +31,24 @@ check_update_col <- function(session, input, word, word_id){
   updateButton(session, paste0("l5_w",word_id), label = toupper(str_sub(input$word1_guess, 5, 5)))
 }
 
+
+#'@title change_letter_col
+#'
+#'@description Change letter colour
+#'
+#'@details links to the css, assigns the class for changing colours of the buttons depending on value (correct, incorrect or wrong spot). 
+#'
+#'@param session Shiny session
+#'
+#'@param value Wether the value of the letter is right / wrong / wrong spot
+#'
+#'@param id id of box / button identifier
+#'
+#'@return colour change of box
+#'
+#'@examples change_letter_col(session, word[1,1], paste0("l1_w",word_id))
+#'
+#'@export
 
 change_letter_col <- function(session,value,id){
   if(value>2){
@@ -34,6 +72,31 @@ change_letter_col <- function(session,value,id){
   }
 }
 
+#'@title calculate_date_labels
+#'
+#'@description Creates the date labels for a flextable chart
+#'
+#'@details Assumes a dataframe which is in wide format, with a column with row names and the rest are 
+#' columns with column names as weekly dates- in standard date format. The function will then calculate the months and the position 
+#'  of the month label, which column it should be displayed above. See Example:  
+#'
+#'@param colNames A vector of column names- all dates but one which is the skipCol
+#'
+#'@param skipCol A column name to skip
+#'
+#'@return list
+#'
+#'@examples 
+#' # Create a dummy dataframe
+#' df <- mtcars
+#' names(df) <- seq.Date(as.Date("2021-01-01"), length.out = length(df), by="week")
+#' df["car_name"] = row.names(df)
+#' 
+#' calculate_date_labels(
+#'  names(df),
+#'  skip_colName = "car_name")
+#'
+#'@export
 
 letter_colour_ui<- function(ui,word_id) {
   fluidRow(
@@ -51,6 +114,31 @@ letter_colour_ui<- function(ui,word_id) {
 }
 
 
+#'@title calculate_date_labels
+#'
+#'@description Creates the date labels for a flextable chart
+#'
+#'@details Assumes a dataframe which is in wide format, with a column with row names and the rest are 
+#' columns with column names as weekly dates- in standard date format. The function will then calculate the months and the position 
+#'  of the month label, which column it should be displayed above. See Example:  
+#'
+#'@param colNames A vector of column names- all dates but one which is the skipCol
+#'
+#'@param skipCol A column name to skip
+#'
+#'@return list
+#'
+#'@examples 
+#' # Create a dummy dataframe
+#' df <- mtcars
+#' names(df) <- seq.Date(as.Date("2021-01-01"), length.out = length(df), by="week")
+#' df["car_name"] = row.names(df)
+#' 
+#' calculate_date_labels(
+#'  names(df),
+#'  skip_colName = "car_name")
+#'
+#'@export
 
 ##Continue game functions----
 word_checker <- function(session, target_val, guess_val) {
@@ -107,6 +195,31 @@ word_checker <- function(session, target_val, guess_val) {
   return(output)
 }
 
+#'@title calculate_date_labels
+#'
+#'@description Creates the date labels for a flextable chart
+#'
+#'@details Assumes a dataframe which is in wide format, with a column with row names and the rest are 
+#' columns with column names as weekly dates- in standard date format. The function will then calculate the months and the position 
+#'  of the month label, which column it should be displayed above. See Example:  
+#'
+#'@param colNames A vector of column names- all dates but one which is the skipCol
+#'
+#'@param skipCol A column name to skip
+#'
+#'@return list
+#'
+#'@examples 
+#' # Create a dummy dataframe
+#' df <- mtcars
+#' names(df) <- seq.Date(as.Date("2021-01-01"), length.out = length(df), by="week")
+#' df["car_name"] = row.names(df)
+#' 
+#' calculate_date_labels(
+#'  names(df),
+#'  skip_colName = "car_name")
+#'
+#'@export
 
 guess_achieved <- function(input,target){
   if(input==target){
@@ -122,6 +235,31 @@ guess_achieved <- function(input,target){
   }
 }
 
+#'@title calculate_date_labels
+#'
+#'@description Creates the date labels for a flextable chart
+#'
+#'@details Assumes a dataframe which is in wide format, with a column with row names and the rest are 
+#' columns with column names as weekly dates- in standard date format. The function will then calculate the months and the position 
+#'  of the month label, which column it should be displayed above. See Example:  
+#'
+#'@param colNames A vector of column names- all dates but one which is the skipCol
+#'
+#'@param skipCol A column name to skip
+#'
+#'@return list
+#'
+#'@examples 
+#' # Create a dummy dataframe
+#' df <- mtcars
+#' names(df) <- seq.Date(as.Date("2021-01-01"), length.out = length(df), by="week")
+#' df["car_name"] = row.names(df)
+#' 
+#' calculate_date_labels(
+#'  names(df),
+#'  skip_colName = "car_name")
+#'
+#'@export
 
 max_guesses <- function(){
   showModal(
