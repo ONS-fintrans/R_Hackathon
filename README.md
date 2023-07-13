@@ -1,21 +1,20 @@
-# `repo_cookiecutter`
+# R Hackathon`
 
-This is the suggested default template for ONS-fintrans repositories in following with best practice principles. This repository provides users with a quick and consistent way to develop projects that reduce set-up, onboarding, and development time.
+## Wordle Game
 
-The key features are consistent directory structures, simple documentation and AQA planning, pre-commit hooks to promote best practice and reduce data risk, and GIT integration as standard. For full overview please see below and other relevant read_me files under each project section. This is developed from the gov-cookiecutter basic template.
+This repository contains the application and requirements to play Wordle.
+
+Wordle is a game were players have six attempts to guess a five-letter word.
+After each guess the tiles will change colour, this indicated to the player if the letters they guessed are in the word / in the correct position.
+
+![image](https://github.com/ONS-fintrans/R_Hackathon/assets/49981451/bfd76f66-6d5e-4e7d-8271-e632dceb399b)
+
 
 ## Directory overview
-- Data folder and all contents are untracked by GIT
+- www folder contains the images and .css files used within the application
 - .gitignore default blocks popular data export file types due to data sensitivity
-- Documents folder contains AQA plan, assumptions, caveats, project planning
-- Notebooks stores notebooks
-- Outputs stores outputs
-- src for functions, modules, python scripts
 - Use .env for consistent file paths
-- Test for tests of src and coverage
-- Secrets require .secrets and are not tracked by Git, see Secrets and credentials for more information
-
-See /docs/structure/README.md for an overview of the project structure, and docs/contributor_guide/README.md for an overview on contributing for developers.
+- .pre_commit_config.yaml contains pre-commit hooks
 
 ## Getting started
 
@@ -26,17 +25,13 @@ located.
 
 ### Requirements
 
-- Access to Google Cloud Platform, Vertex AI Notebooks, Google Big Query
-- Permissions to access project datasets and personal notebook
-- Python 3.6.1+ installed
-- a `.secrets` file (if needed to manage credentials) with the needed secrets and credentials
-- load environment variables from `.env`
+- Access to R
 
 ## Set-up
 
-1) Create or clone a repository using this template.
+1) Clone this repository
 
-2) Install the Python requirements, open your terminal and enter:
+2) Install the R requirements, open your terminal and enter:
 
 ```shell
 pip install -r requirements.txt
@@ -83,71 +78,8 @@ print(path_to_outputs) #returns ./outputs
 
 ## Hidden Files & .Gitignore (if required)
 
-For developers note that if using JuypterLabs that some files such as .gitignore are hidden by default. .Gitignore is set-up for both Python, R, and generally popular output methods. This limits the possibility to commit privileged data to Git through various filetypes but this is not a replacement for best practice.
+For developers note that if using JuypterLabs that some files such as .gitignore are hidden by default.This limits the possibility to commit privileged data to Git through various filetypes but this is not a replacement for best practice.
 
-These hidden files are accessed through GitHub or through changing JuypterLabs server config settings if required for individual users. This latter step is only recommended if developers require and is not recommended for standard or non-technical users. To enable hidden files:
-1) To locate the jupyter config file, open the terminal and enter:
-```shell
-cd ~/.jupyter && nano jupyter_notebook_config.py
-```
-2) This will open the nano editor, under additional code at the bottom add this line
-```shell
-c.ContentsManager.allow_hidden = True
-```
-3) Press ctrl + O to save and hit enter to confirm the filename with agnostic file type saving. Press ctrl + x to exit.
-
-4) Restart the notebook and kernels, any hidden . files will now be visible such as .secrets or .gitignore.
-
-## Secrets and credentials (if required)
-
-This is a recommended best practice to employ a `.secrets` file but may not be necessary for all projects where credential management is not required. For GCP Vertex AI Notebook work this step may be optional as credential management occurs at an earlier stage and external access is typically disallowed, users may wish to include project ID's and similar as secrets however.
-
-To run this project, you need a `.secrets` file with secrets/credentials as environmental variables. The
-secrets/credentials should have the following environment variable name(s):
-
-| Secret/credential | Environment variable name | Description                                |
-|-------------------|---------------------------|--------------------------------------------|
-| Secret 1          | `SECRET_VARIABLE_1`       | Plain English description of Secret 1.     |
-| Credential 1      | `CREDENTIAL_VARIABLE_1`   | Plain English description of Credential 1. |
-
-Once added you can load these environment variables using `.env`. See docs/user_guide/loading_environment_variables.md for an overview.
-
-## Loading secret variables (if required)
-
-To load environment variables such as credentials from the `.secret` hidden file you will need to use `dotenv` and `os` if using Python on windows.
-
-```{warning}
-This is not the best practice solution and should be able to work without changing
-directories or specifying the full directory similar to `.env` process.
-Any contributions to fix this are welcome.
-```
-
-1) Create your `.secrets` file if it does not exist, open your terminal and type:
-```shell
-touch .secrets
-```
-2) Add your credentials into .secrets, this is untracked by GIT. Follow the format shown in Secrets and credentials (if required) section.
-
-3) Open your notebook and import modules:
-```python
-from dotenv import load_dotenv
-import os
-```
-2) Load `.secrets` file by either using the full file path or changing your directory to project root:
-Using full file path:
-```python
-%pwd #this shows your full working directory, grab to the project root
-load_dotenv("<full_directory_to_project_root>/.secrets", override=True)
-%env #returns all environment variables
-```
-
-Alternatively change directory to root:
-```python
-#change directory to project root
-cd ..
-load_dotenv(".secrets", override=True)
-%env #returns all environment variables
-```
 3) Select the environment variable you require
 ```python
 my_secret = os.getenv("SECRET_1")
