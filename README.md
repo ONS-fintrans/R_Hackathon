@@ -5,7 +5,7 @@
 This repository contains the application and requirements to play Wordle.
 
 Wordle is a game were players have six attempts to guess a five-letter word.
-After each guess the tiles will change colour, this indicated to the player if the letters they guessed are in the word / in the correct position.
+After each guess the tiles will change colour, this indicates to the player if the letters they guessed are in the word / in the correct position.
 
 ![image](https://github.com/ONS-fintrans/R_Hackathon/assets/49981451/bfd76f66-6d5e-4e7d-8271-e632dceb399b)
 
@@ -26,6 +26,16 @@ located.
 ### Requirements
 
 - Access to R
+- Installaion of the follwoing packages in R
+  - dplyr
+  - DT
+  - shiny
+  - shinyBS
+  - shinydashboard
+  - shinyjs
+  - shinyWidgets
+  - stringr
+  - words
 
 ## Set-up
 
@@ -74,14 +84,4 @@ load_dotenv(override=True)
 ```python
 path_to_outputs = os.getenv("DIR_OUTPUTS")
 print(path_to_outputs) #returns ./outputs
-```
-
-## Hidden Files & .Gitignore (if required)
-
-For developers note that if using JuypterLabs that some files such as .gitignore are hidden by default.This limits the possibility to commit privileged data to Git through various filetypes but this is not a replacement for best practice.
-
-3) Select the environment variable you require
-```python
-my_secret = os.getenv("SECRET_1")
-print(my_secret) #returns "yuki is a cute kitten"
 ```
