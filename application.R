@@ -9,10 +9,14 @@ library(stringr)
 library(words)
 source("C:/My_RStudio/Workspace/R_hackathon/functions.R")
 
+
+#Setting words list
 word_list <- words::words %>% 
   filter(word_length == 5) %>% 
   select(word)
 
+
+#Developing user interface - header, sidebar, input box and also buttons
 header <- dashboardHeader(title = "Wordle Shiny")
 
 sidebar <- dashboardSidebar(disable = T)
@@ -32,7 +36,7 @@ body <- dashboardBody(
       tagAppendAttributes(class = "inline-element"),
     actionButton(inputId = "go1", "Lock Guess", class = "lockButton")
   ),
-  letter_colour_ui("word1",1),
+  letter_colour_ui("word1",1), 
   br(),
   letter_colour_ui("word2",2),
   br(),
@@ -44,24 +48,28 @@ body <- dashboardBody(
   br(),
   letter_colour_ui("word6",6)
 )
-
+#Custom .css for adding colours to boxes 
 ui <- dashboardPage(
   tags$head(
-    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")),
+    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")), 
   skin = "black",
   header = header,
   sidebar = sidebar,
   body = body
 )
 
+
+# Setting up server / changing pieces
 server <- function(input,output,session){
   
+  #Close app function to trigger after javascript code (4s delay)
   observeEvent(input$closeApp,{
     if(input$closeApp){
       stopApp()
     }
   })
   
+  #Help button
   observeEvent(input$help, {
     showModal(modalDialog(
       HTML('<img src="instructions.png" onmousedown="if (event.preventDefault) event.preventDefault()" />'),
@@ -72,18 +80,21 @@ server <- function(input,output,session){
     ))
   })
   
-  
+  #Setting counter to 0
   counter <- reactiveValues(countervalue = 0)
   previous_guesses <- reactiveValues()
   
+  #Setting target words
   target <- sample(word_list$word,1)
   target_val <- strsplit(target, "")[[1]]
   
   
+  #Hit the "Submit" button of a word guess, all the following happens:
   observeEvent(input$go1, {
     
      guess <- tolower(input$word1_guess)
      
+     #Ensuring word is 5 letters long
     if(nchar(guess)!=5){
       showModal(
         modalDialog(
@@ -96,6 +107,8 @@ server <- function(input,output,session){
         )
       )
       updateTextInput(session,"word1_guess",value="")
+      
+      #Ensuring word is in word list
     } else if(!(guess %in% word_list$word)){
       showModal(
         modalDialog(
@@ -108,6 +121,8 @@ server <- function(input,output,session){
         )
       )
       updateTextInput(session,"word1_guess",value="")
+      
+      #Checking if word has been guessed previously
     } else {
         if(guess %in% previous_guesses$guess){
           showModal(
@@ -126,11 +141,11 @@ server <- function(input,output,session){
           previous_guesses$guess <- c(isolate(previous_guesses$guess), isolate(guess))
           
           guess_val <- strsplit(input$word1_guess, "")[[1]]
-          print(guess_val)
+          
       
           word <- word_checker(session, target_val, guess_val)
-          print(word)
-      
+          
+      #Depending on counter value, updating the following boxes
           if (counter$countervalue==0){
             check_update_col(session, input, word, 1)
         
@@ -180,6 +195,7 @@ server <- function(input,output,session){
         
          }}}
     
+     #Max guess' reached
     if(counter$countervalue==6){
       max_guesses()
     }
@@ -192,5 +208,5 @@ server <- function(input,output,session){
   
 }
 
-
+#Run App
 shinyApp(ui = ui, server = server)
