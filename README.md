@@ -25,7 +25,7 @@ To start playing wordle:
 
 ### Requirements
 - Access to R
-- Installaion of the following packages in R
+- Installaion of the following packages in R:
   - dplyr
   - DT
   - shiny
