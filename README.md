@@ -36,19 +36,4 @@ To start playing wordle:
   - stringr
   - words
 
-## Set-up
-1) Clone this repository
-
-2) Install the R requirements, open your terminal and enter:
-
-```shell
-pip install -r requirements.txt
-```
-
-3) Auto-setup pre-commit hooks and other features for development, open your terminal and enter:
-
-```shell
-make requirements
-```
-
 
